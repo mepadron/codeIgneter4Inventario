@@ -3,11 +3,21 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\PersonasModel;
 
 class PersonasController extends BaseController
 {
+    public $personaModel;
+
+    public function __construct()
+    {
+        $this->personaModel= new PersonasModel();
+
+    }
+
     public function index()
     {
+        // echo $this->personaModel->validarusuario("lolo");
         return view('bienvenido_persona');
     }
     
@@ -21,18 +31,13 @@ class PersonasController extends BaseController
         
         $login=$this->request->getPost('loginForm');
         $clave=$this->request->getPost('claveForm');
-        $data[]= Array();
-        if($login=="mpadron" and $clave=="1234"){
-            $data['login']= $login;            
-            // echo "usted esta logueado";
-            return view('admin/admin_view', $data);
-            
+        // $data[]= Array();
+        if($this->personaModel->validarusuario($login,$clave)){ 
+            return view('admin/admin_view');
         }else{
-            // echo "NOOOOOOO esta logueado";
-            $data['login']= $login;            
-            return view('admin/errors/error_custom_view', $data);
-
+            return view('admin/errors/error_custom_view');
 
         }
+        
     }
 }
