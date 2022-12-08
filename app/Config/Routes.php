@@ -37,6 +37,7 @@ $routes->setAutoRoute(true);
 // http://localhost:8080/PersonasController/hola
 $routes->get('/', 'PersonasController::index');
 $routes->get('/hola', 'PersonasController::hola');
+$routes->post('/PersonasController', 'PersonasController::procesarLogin');
 
 /*
  * --------------------------------------------------------------------
