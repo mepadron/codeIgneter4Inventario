@@ -18,7 +18,11 @@ class PersonasController extends BaseController
     public function index()
     {
         // echo $this->personaModel->validarusuario("lolo");
-        return view('bienvenido_persona');
+        // $data[]= Array('nombre'=>'miguel','apellido'=>'padron','cedula'=>'9883255');
+        $d = Array();
+        $d['datos'] = Array('nombre'=>'miguel','apellido'=>'padron','cedula'=>'9883255');
+        // $data['pepe']= "lolo";
+        return view('bienvenido_persona',$d);
     }
     
     public function hola()
@@ -31,7 +35,7 @@ class PersonasController extends BaseController
         
         $login=$this->request->getPost('loginForm');
         $clave=$this->request->getPost('claveForm');
-        // $data[]= Array();
+        // $data[]= Array('nombre'=>'miguel','apellido'=>'padron','cedula'=>'9883255');
         if($this->personaModel->validarusuario($login,$clave)){ 
             return view('admin/admin_view');
         }else{
